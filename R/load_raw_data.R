@@ -1,4 +1,7 @@
 # Load needed libraries
+list.of.packages <- c("readxl", "here")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
 
 library(readxl)
 library(here)

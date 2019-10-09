@@ -1,9 +1,15 @@
 # Load needed libraries
+
+list.of.packages <- c("readxl", "tidyverse", "here")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
 library(readxl)
 library(tidyverse)
 library(here)
 
 # Describe variables type
+
 descrip_var <- read_excel(here("data/raw/test_depuracion.xlsx"), sheet = 2)
 var_type <- descrip_var$type  %>% replace(descrip_var$type  == "dt", "date") %>% 
                                   replace(descrip_var$type  == "c", "numeric") %>%
