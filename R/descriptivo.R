@@ -275,11 +275,7 @@ pdf("outputs/selected categorical vs. categorical.pdf")
 for (i in outcome_cat) {
   signif_df <- as.data.frame(eval(as.name(paste0("table_categ_", i))))
   signif_df$`p-valor` <- as.numeric(as.character(signif_df$`p-valor`))
-  if (i == "distrib") { # Assign names for columns
-  signif_graph <- na.omit(distinct(signif_df[signif_df$`p-valor` < 0.05,][,c(1, 9)]))
-  } else {
-    signif_graph <- na.omit(distinct(signif_df[signif_df$`p-valor` < 0.05,][,c(1, 15)]))
-  }
+  signif_graph <- na.omit(distinct(signif_df[signif_df$`p-valor` < 0.05,][,c(1, ncol(signif_df))]))
   for (h in 1:nrow(signif_graph)) {
     data_plot <- data.frame(table(categoric_var_na[[i]], 
                                   categoric_var_na[[paste(signif_df[h, ]$var)]]))
@@ -345,3 +341,4 @@ for (i in outcome_num) {
   }
 }
 dev.off()
+
