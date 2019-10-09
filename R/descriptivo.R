@@ -269,6 +269,7 @@ write.xlsx(eval(as.name(paste0("table_categ_", i))), row.names = F, showNA = F,
 }
 
 # Create plots (stacked column charts) and export on a pdf file
+
 m = 0 # Initialized index for loop
 pdf("outputs/selected categorical vs. categorical.pdf")
 for (i in outcome_cat) {
